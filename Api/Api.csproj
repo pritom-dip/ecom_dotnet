@@ -19,6 +19,7 @@
     <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\Utility\Utility.csproj" />
+    <ProjectReference Include="..\AllServices\AllServices.csproj" />
   </ItemGroup>
 
 </Project>
