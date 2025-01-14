@@ -22,6 +22,16 @@ namespace AllServices.Services.UserContainer
             return newUser;
         }
 
+        public async Task<User?> DeleteUser(int id)
+        {
+            var user = await _userService.GetById(id);
+            if(user == null){
+                return null;
+            }
+            _userService.Delete(user);
+            return user;
+        }
+
         public async Task<List<User>> GetAllUsers()
         {
             var AllUsers = await _userService.Get();

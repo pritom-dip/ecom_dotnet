@@ -24,6 +24,12 @@ namespace AllServices.Services.UserContainer
             return user;
         }
 
+        public async void Delete(User user)
+        {
+            _userRepo.Users.Remove(user);
+            await _userRepo.SaveChangesAsync();
+        }
+
         public async Task<List<User>> Get()
         {
             return await _userRepo.Users.ToListAsync();
@@ -32,6 +38,11 @@ namespace AllServices.Services.UserContainer
         public async Task<User?> GetById(int id)
         {
             return await _userRepo.Users.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<bool> UserExists(int id)
+        {
+            return await _userRepo.Users.AnyAsync(x => x.Id == id);
         }
     }
 }
