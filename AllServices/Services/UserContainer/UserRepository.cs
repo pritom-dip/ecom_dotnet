@@ -17,15 +17,21 @@ namespace AllServices.Services.UserContainer
             _userRepo = context;
         }
 
-        public async void Create(User user)
+        public async Task<User> Create(User user)
         {
             await _userRepo.Users.AddAsync(user);
             await _userRepo.SaveChangesAsync();
+            return user;
         }
 
         public async Task<List<User>> Get()
         {
             return await _userRepo.Users.ToListAsync();
+        }
+
+        public async Task<User?> GetById(int id)
+        {
+            return await _userRepo.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

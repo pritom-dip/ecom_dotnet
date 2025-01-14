@@ -10,6 +10,8 @@ namespace AllServices.Services.UserContainer
     {
         Task<List<User>> Get();
 
-        void Create(User user);
+        Task<User?> GetById(int id);
+
+        Task<User> Create(User user);
     }
 }
