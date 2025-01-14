@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AllServices.Services.UserContainer;
+using DataAccess.Dtos.UserDto;
 using DataAccess.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -40,15 +41,17 @@ namespace Api.Controller
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(user.ToGetUserDto());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] User user) {
+        public async Task<IActionResult> Post([FromBody] CreateUserDto userDto) {
 
             if(!ModelState.IsValid){
                 return BadRequest();
             }
+
+            var user = userDto.ToCreateUser();
 
             var newUser = await _userService.CreateUser(user);
 
@@ -56,7 +59,7 @@ namespace Api.Controller
                 return BadRequest();
             }
 
-            return CreatedAtAction(nameof(GetUserById), new {id= newUser.Id}, newUser);
+            return CreatedAtAction(nameof(GetUserById), new {id= newUser.Id}, newUser.ToGetUserDto());
         }
         
     }
