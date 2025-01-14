@@ -27,6 +27,6 @@ namespace Models
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-        public List<Customer> Customers { get; set; } = new List<Customer>();
+        public List<Customer>? Customers { get; set; }
     }
 }

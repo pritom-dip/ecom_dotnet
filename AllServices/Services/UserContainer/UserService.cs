@@ -15,10 +15,23 @@ namespace AllServices.Services.UserContainer
         {
             _userService = _userRepo;
         }
+
+        public async Task<User?> CreateUser(User user)
+        {
+            var newUser = await _userService.Create(user);
+            return newUser;
+        }
+
         public async Task<List<User>> GetAllUsers()
         {
             var AllUsers = await _userService.Get();
             return AllUsers;
+        }
+
+        public async Task<User?> GetUserById(int id)
+        {
+            var user = await _userService.GetById(id);
+            return user;
         }
     }
 }
