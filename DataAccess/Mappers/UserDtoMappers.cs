@@ -20,5 +20,13 @@ namespace DataAccess.Mappers
             };
         }
         
+
+        public static User ToCreateUser(this CreateUserDto createUserDto){
+            return new User {
+                Username = createUserDto.Username,
+                Email = createUserDto.Email,
+                Password = BCrypt.Net.BCrypt.HashPassword(createUserDto.Password)
+            };
+        }
     }
 }
