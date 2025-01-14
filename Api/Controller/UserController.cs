@@ -61,6 +61,16 @@ namespace Api.Controller
 
             return CreatedAtAction(nameof(GetUserById), new {id= newUser.Id}, newUser.ToGetUserDto());
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteUser(int id){
+            var user = await _userService.DeleteUser(id);
+            if(user == null){
+                return NotFound();
+            }
+            return Ok(null);
+        }
         
     }
 }
