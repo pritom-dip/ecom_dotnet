@@ -22,8 +22,8 @@ namespace Api.Controller
         }
         
         [HttpGet]
-        public async Task<IActionResult> GetUsers(){
-            var users = await _userService.GetAllUsers();
+        public IActionResult GetUsers(){
+            var users =  _userService.GetAllUsers();
             var userDtos = users.Select(x => x.ToGetUserDto());
             return Ok(userDtos);
         }
