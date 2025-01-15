@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAccess.Dtos.UserDto;
+using DataAccess.Mappers;
 using Models;
 
 namespace AllServices.Services.UserContainer
@@ -16,8 +18,9 @@ namespace AllServices.Services.UserContainer
             _userService = _userRepo;
         }
 
-        public async Task<User?> CreateUser(User user)
+        public async Task<User?> CreateUser(CreateUserDto userDto)
         {
+            var user = userDto.ToCreateUser();
             var newUser = await _userService.Create(user);
             return newUser;
         }
@@ -28,7 +31,7 @@ namespace AllServices.Services.UserContainer
             if(user == null){
                 return null;
             }
-            _userService.Delete(user);
+            await _userService.Delete(user);
             return user;
         }
 
@@ -42,6 +45,21 @@ namespace AllServices.Services.UserContainer
         {
             var user = await _userService.GetById(id);
             return user;
+        }
+
+        public async Task<User?> UpdateUser(UpdateUserDto updateUserDto, int id)
+        {
+            var existingUser = await _userService.GetById(id);
+            if(existingUser == null){
+                return null;
+            }
+
+            existingUser.Username = updateUserDto.Username;
+            existingUser.Email = updateUserDto.Email;
+            existingUser.Password = updateUserDto.Password;
+
+            await _userService.Update(existingUser);
+            return existingUser;
         }
     }
 }

@@ -28,5 +28,13 @@ namespace DataAccess.Mappers
                 Password = BCrypt.Net.BCrypt.HashPassword(createUserDto.Password)
             };
         }
+
+        public static User ToUpdateUser(this UpdateUserDto updateUserDto){
+            return new User {
+                Username = updateUserDto.Username,
+                Email = updateUserDto.Email,
+                Password = BCrypt.Net.BCrypt.HashPassword(updateUserDto.Password)
+            };
+        }
     }
 }
