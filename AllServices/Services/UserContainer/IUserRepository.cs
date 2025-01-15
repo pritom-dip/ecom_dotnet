@@ -14,8 +14,10 @@ namespace AllServices.Services.UserContainer
 
         Task<User> Create(User user);
 
-        void Delete(User user);
+        Task<User?> Delete(User user);
 
         Task<bool> UserExists(int id);
+
+        Task<User> Update(User user);
     }
 }

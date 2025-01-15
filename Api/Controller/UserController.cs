@@ -51,9 +51,7 @@ namespace Api.Controller
                 return BadRequest();
             }
 
-            var user = userDto.ToCreateUser();
-
-            var newUser = await _userService.CreateUser(user);
+            var newUser = await _userService.CreateUser(userDto);
 
             if(newUser == null){
                 return BadRequest();
@@ -70,6 +68,22 @@ namespace Api.Controller
                 return NotFound();
             }
             return Ok(null);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] UpdateUserDto userDto){
+            if(!ModelState.IsValid){
+                return BadRequest();
+            }
+
+            var updatedUser = await _userService.UpdateUser(userDto, id);
+
+            if(updatedUser == null){
+                return NotFound();
+            }
+
+            return Ok(updatedUser.ToGetUserDto());
         }
         
     }
