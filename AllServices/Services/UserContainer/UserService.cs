@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using DataAccess.Dtos.UserDto;
 using DataAccess.Mappers;
 using Models;
+using Utility.ExtensionHelpers;
 
 namespace AllServices.Services.UserContainer
 {
     public class UserService : IUserService
     {
-
         private readonly IUserRepository _userService;
 
         public UserService(IUserRepository _userRepo)
@@ -35,10 +35,10 @@ namespace AllServices.Services.UserContainer
             return user;
         }
 
-        public async Task<List<User>> GetAllUsers()
+        public  List<User> GetAllUsers()
         {
-            var AllUsers = await _userService.Get();
-            return AllUsers;
+            var allUsers = _userService.Get().Paginate(1, 2).ToList();
+            return allUsers;
         }
 
         public async Task<User?> GetUserById(int id)

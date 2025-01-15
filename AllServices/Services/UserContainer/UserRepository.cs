@@ -31,9 +31,9 @@ namespace AllServices.Services.UserContainer
             return user;
         }
 
-        public async Task<List<User>> Get()
+        public IQueryable<User> Get()
         {
-            return await _userRepo.Users.ToListAsync();
+            return _userRepo.Users.AsQueryable();
         }
 
         public async Task<User?> GetById(int id)
