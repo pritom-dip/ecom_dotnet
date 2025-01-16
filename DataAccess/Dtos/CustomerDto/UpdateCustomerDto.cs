@@ -20,6 +20,5 @@ namespace DataAccess.Dtos.CustomerDto
         public string? PostalCode { get; set; } = String.Empty;
         public string? Country { get; set; } = String.Empty;
         public string Phone { get; set; } = String.Empty;
-        public User? User { get; set; }
     }
 }
