@@ -2,6 +2,7 @@ using AllServices.Services.CategoryContainer;
 using AllServices.Services.CustomerContainer;
 using AllServices.Services.ProductContainer;
 using AllServices.Services.RepositoryContainer;
+using AllServices.Services.ReviewContainer;
 using AllServices.Services.UserContainer;
 using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +38,10 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 // Product
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+
+// Review
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
 
 // Build the container
 var app = builder.Build();
