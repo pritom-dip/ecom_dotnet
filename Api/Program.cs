@@ -1,3 +1,4 @@
+using AllServices.Services.CategoryContainer;
 using AllServices.Services.CustomerContainer;
 using AllServices.Services.RepositoryContainer;
 using AllServices.Services.UserContainer;
@@ -10,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Adding Controller Services
 builder.Services.AddControllers();
 
 // Adding database connection
@@ -20,11 +23,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 // Adding services with Interfaces
+// User
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+// Customer
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+// Category
+builder.Services.AddScoped<IcategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
+// Build the container
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,6 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Mapping through Controllers
 app.UseHttpsRedirection();
 app.MapControllers();
 
