@@ -14,6 +14,5 @@ namespace DataAccess.Dtos.CategoryDto
         public int DisplayOrder { get; set; }
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
-        public List<Product>? Products { get; set; } = new List<Product>();
     }
 }

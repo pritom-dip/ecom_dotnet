@@ -1,5 +1,6 @@
 using AllServices.Services.CategoryContainer;
 using AllServices.Services.CustomerContainer;
+using AllServices.Services.ProductContainer;
 using AllServices.Services.RepositoryContainer;
 using AllServices.Services.UserContainer;
 using DataAccess.Data;
@@ -32,6 +33,10 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 // Category
 builder.Services.AddScoped<IcategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+// Product
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 // Build the container
 var app = builder.Build();
