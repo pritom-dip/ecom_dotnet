@@ -1,3 +1,5 @@
+using AllServices.Services.CustomerContainer;
+using AllServices.Services.RepositoryContainer;
 using AllServices.Services.UserContainer;
 using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +13,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 // Adding database connection
-builder.Services.AddDbContext<ApplicationDbContext>(options => {
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly("Api"));
 });
@@ -19,6 +22,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 // Adding services with Interfaces
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 var app = builder.Build();
 
