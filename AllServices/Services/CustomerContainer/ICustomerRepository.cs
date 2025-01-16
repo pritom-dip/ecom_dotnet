@@ -9,6 +9,6 @@ namespace AllServices.Services.CustomerContainer
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-        // Task<bool> CustomerExists(int id);
+        Task<bool> CustomerExists(int id);
     }
 }
