@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AllServices.Services.RepositoryContainer;
 using DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace AllServices.Services.ProductContainer
@@ -14,6 +15,11 @@ namespace AllServices.Services.ProductContainer
         public ProductRepository(ApplicationDbContext productRepo) : base(productRepo)
         {
             _productRepo = productRepo;
+        }
+
+        public override async Task<Product?> GetById(int id)
+        {
+            return await _productRepo.Products.Include(p => p.Category).FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

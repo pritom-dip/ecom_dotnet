@@ -17,31 +17,31 @@ namespace AllServices.Services.RepositoryContainer
             _repo = context;
         }
 
-        public async Task<T> Create(T data)
+        public virtual async Task<T> Create(T data)
         {
             await _repo.Set<T>().AddAsync(data);
             await _repo.SaveChangesAsync();
             return data;
         }
 
-        public async Task<T?> Delete(T data)
+        public virtual async Task<T?> Delete(T data)
         {
             _repo.Set<T>().Remove(data);
             await _repo.SaveChangesAsync();
             return data;
         }
 
-        public IQueryable<T> Get()
+        public virtual IQueryable<T> Get()
         {
             return _repo.Set<T>().AsQueryable();
         }
 
-        public async Task<T?> GetById(int id)
+        public virtual async Task<T?> GetById(int id)
         {
             return await _repo.Set<T>().FindAsync(id);
         }
 
-        public async Task<T> Update(T data)
+        public virtual async Task<T> Update(T data)
         {
             await _repo.SaveChangesAsync();
             return data;
