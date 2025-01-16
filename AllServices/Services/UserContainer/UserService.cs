@@ -37,7 +37,7 @@ namespace AllServices.Services.UserContainer
 
         public  List<User> GetAllUsers()
         {
-            var allUsers = _userService.Get().Paginate(1, 2).ToList();
+            List<User> allUsers = _userService.Get().SortBy().Paginate(1, 2).ToList();
             return allUsers;
         }
 

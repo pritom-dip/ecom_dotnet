@@ -27,8 +27,8 @@ namespace Models
 
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-        public Product? Product { get; set; }
+        public Product Product { get; set; }
 
-        public User? User { get; set; }
+        public User User { get; set; }
     }
 }
