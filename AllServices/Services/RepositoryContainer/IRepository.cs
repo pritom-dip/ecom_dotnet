@@ -12,5 +12,6 @@ namespace AllServices.Services.RepositoryContainer
         Task<T> Create(T model);
         Task<T?> Delete(T model);
         Task<T> Update(T model);
+        T? GetFirstOrDefault(Func<T, bool> predicate);
     }
 }

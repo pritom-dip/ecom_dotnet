@@ -46,5 +46,11 @@ namespace AllServices.Services.RepositoryContainer
             await _repo.SaveChangesAsync();
             return data;
         }
+
+        public T? GetFirstOrDefault(Func<T, bool> predicate)
+		{
+			return _repo.Set<T>().FirstOrDefault(predicate);
+
+		}
     }
 }
