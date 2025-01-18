@@ -59,10 +59,10 @@ namespace AllServices.Services.CustomerContainer
             existingCustomer.UserId = updateCustomerDto.UserId;
             existingCustomer.FirstName = updateCustomerDto.FirstName;
             existingCustomer.LastName = updateCustomerDto.LastName;
-            existingCustomer.Address = updateCustomerDto.Address;
-            existingCustomer.City = updateCustomerDto.City;
-            existingCustomer.PostalCode = updateCustomerDto.PostalCode;
-            existingCustomer.Country = updateCustomerDto.Country;
+            existingCustomer.Address = updateCustomerDto.Address ?? existingCustomer.Address;
+            existingCustomer.City = updateCustomerDto.City ?? existingCustomer.City;
+            existingCustomer.PostalCode = updateCustomerDto.PostalCode ?? existingCustomer.PostalCode;
+            existingCustomer.Country = updateCustomerDto.Country ?? existingCustomer.Country;
             existingCustomer.Phone = updateCustomerDto.Phone;
 
 
