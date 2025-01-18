@@ -58,10 +58,10 @@ namespace AllServices.Services.ProductContainer
 
             existingProduct.Name = updateProduct.Name;
             existingProduct.Price = updateProduct.Price;
-            existingProduct.Description = updateProduct.Description;
+            existingProduct.Description = updateProduct.Description ?? existingProduct.Description;
             existingProduct.CategoryId = updateProduct.CategoryId;
             existingProduct.SKU = updateProduct.SKU;
-            existingProduct.Image = updateProduct.Image;
+            existingProduct.Image = updateProduct.Image ?? existingProduct.Image;
             existingProduct.StockQty = updateProduct.StockQty;
 
             await _productRepo.Update(existingProduct);
