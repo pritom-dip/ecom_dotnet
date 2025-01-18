@@ -10,11 +10,11 @@ namespace Models
     {
         [Key]
         public int Id { get; set; }
-        public int OrderId { get; set; }
-        public string ShippingMethod { get; set; }
-        public string TrackingNumber { get; set; }
-        public string ShippingStatus { get; set; }
-        public DateTime EstimatedArrival { get; set; }
+        public required int OrderId { get; set; }
+        public required string ShippingMethod { get; set; }
+        public required string TrackingNumber { get; set; }
+        public required string ShippingStatus { get; set; }
+        public required DateTime EstimatedArrival { get; set; }
         public DateTime ShippingDate { get; set; } = DateTime.Now;
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
