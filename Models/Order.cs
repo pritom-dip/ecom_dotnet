@@ -10,12 +10,14 @@ namespace Models
     {
         [Key]
         public int Id { get; set; }
-        public int CustomerId { get; set; }
+        [Required]
+        public required int CustomerId { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
-        public decimal Total { get; set; }
-        public string ShippingAddress { get; set; }
-        public string PaymentStatus { get; set; }
-        public string OrderStatus { get; set; }
+        [Required]
+        public required decimal Total { get; set; }
+        public string? ShippingAddress { get; set; }
+        public string? PaymentStatus { get; set; }
+        public string? OrderStatus { get; set; }
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
         public Customer? Customer { get; set; }
