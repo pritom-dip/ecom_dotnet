@@ -21,8 +21,8 @@ namespace DataAccess.Mappers
                 SKU = product.SKU,
                 CreateAt = product.CreateAt,
                 UpdatedAt = product.UpdatedAt,
-                Category = product.Category.ToCategoryDto(),
-                Reviews = product.Reviews
+                Category = product.Category != null ? product.Category.ToCategoryDto() : null,
+                Reviews = product.Reviews.Select(r => r.ToReviewDto()).ToList()
             };
         }
 
@@ -31,9 +31,9 @@ namespace DataAccess.Mappers
             {
                 CategoryId = createProductDto.CategoryId,
                 Name = createProductDto.Name,
-                Description = createProductDto.Description,
+                Description = createProductDto.Description ?? string.Empty,
                 Price = createProductDto.Price,
-                Image = createProductDto.Image,
+                Image = createProductDto.Image ?? string.Empty,
                 StockQty = createProductDto.StockQty,
                 SKU = createProductDto.SKU
             };
@@ -44,9 +44,9 @@ namespace DataAccess.Mappers
             {
                 CategoryId = updateProductDto.CategoryId,
                 Name = updateProductDto.Name,
-                Description = updateProductDto.Description,
+                Description = updateProductDto.Description ?? string.Empty,
                 Price = updateProductDto.Price,
-                Image = updateProductDto.Image,
+                Image = updateProductDto.Image ?? string.Empty,
                 StockQty = updateProductDto.StockQty,
                 SKU = updateProductDto.SKU
             };

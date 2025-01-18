@@ -19,6 +19,6 @@ namespace DataAccess.Dtos.ProductDto
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
         public CategoryDto.CategoryDto? Category { get; set; }
-        public List<Review> Reviews { get; set; } = new List<Review>();
+        public List<ReviewDto.ReviewDto> Reviews { get; set; } = new List<ReviewDto.ReviewDto>();
     }
 }

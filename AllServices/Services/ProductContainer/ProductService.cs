@@ -39,7 +39,7 @@ namespace AllServices.Services.ProductContainer
 
         public List<Product> GetAllProducts()
         {
-            var products = _productRepo.Get().Include(p => p.Category).Paginate(1,3).ToList();
+            var products = _productRepo.Get().Include(p => p.Category).Include(p => p.Reviews).Paginate(1,3).ToList();
             return products;
         }
 

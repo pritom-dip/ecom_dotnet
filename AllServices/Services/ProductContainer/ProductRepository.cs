@@ -19,7 +19,7 @@ namespace AllServices.Services.ProductContainer
 
         public override async Task<Product?> GetById(int id)
         {
-            return await _productRepo.Products.Include(p => p.Category).FirstOrDefaultAsync(x => x.Id == id);
+            return await _productRepo.Products.Include(p => p.Category).Include(p => p.Reviews).FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }
