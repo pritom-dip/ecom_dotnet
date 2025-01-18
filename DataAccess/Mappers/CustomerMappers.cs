@@ -36,10 +36,10 @@ namespace DataAccess.Mappers
                 UserId = createCustomerDto.UserId,
                 FirstName = createCustomerDto.FirstName,
                 LastName = createCustomerDto.LastName,
-                Address = createCustomerDto.Address,
-                City = createCustomerDto.City,
-                PostalCode = createCustomerDto.PostalCode,
-                Country = createCustomerDto.Country,
+                Address = createCustomerDto.Address ?? string.Empty,
+                City = createCustomerDto.City ?? string.Empty,
+                PostalCode = createCustomerDto.PostalCode ?? string.Empty,
+                Country = createCustomerDto.Country ?? string.Empty,
                 Phone = createCustomerDto.Phone,
             };
         }

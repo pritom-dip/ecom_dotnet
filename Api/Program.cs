@@ -1,7 +1,7 @@
+using AllServices.Seeder;
 using AllServices.Services.CategoryContainer;
 using AllServices.Services.CustomerContainer;
 using AllServices.Services.ProductContainer;
-using AllServices.Services.RepositoryContainer;
 using AllServices.Services.ReviewContainer;
 using AllServices.Services.UserContainer;
 using DataAccess.Data;
@@ -45,6 +45,16 @@ builder.Services.AddScoped<IReviewService, ReviewService>();
 
 // Build the container
 var app = builder.Build();
+
+// Seed Data
+// using (var scope = app.Services.CreateScope())
+// {
+//     Console.WriteLine("Data Seeding");
+//     var services = scope.ServiceProvider;
+//     var dataSeeder = new Seeder(services.GetRequiredService<ApplicationDbContext>());
+//     await dataSeeder.SeedAsync();
+//     Console.WriteLine("Data Seeded");
+// }
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

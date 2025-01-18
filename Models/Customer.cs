@@ -11,13 +11,13 @@ namespace Models
         [Key]
         public int Id { get; set; }
         public int UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }    
-        public string PostalCode { get; set; }
-        public string Country { get; set; }
-        public string Phone { get; set; }
+        public required string FirstName { get; set; }
+        public string? LastName { get; set; }
+        public required string Address { get; set; }
+        public required string City { get; set; }
+        public required string PostalCode { get; set; }
+        public required string Country { get; set; }
+        public string? Phone { get; set; }
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 

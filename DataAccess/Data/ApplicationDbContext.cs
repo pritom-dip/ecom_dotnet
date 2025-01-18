@@ -12,7 +12,7 @@ namespace DataAccess.Data
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
-            
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -25,26 +25,26 @@ namespace DataAccess.Data
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Shipping> Shippings { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder){
-            base.OnModelCreating(builder);
-            builder.Entity<User>().HasData(
-                new User {
-                    Id = 1,
-                    Username = "Admin",
-                    Email = "pritom@gmail.com",
-                    Password = "123456",
-                    Role = "Admin"
+        // protected override void OnModelCreating(ModelBuilder builder){
+        //     base.OnModelCreating(builder);
+        //     builder.Entity<User>().HasData(
+        //         new User {
+        //             Id = 1,
+        //             Username = "Admin",
+        //             Email = "pritom@gmail.com",
+        //             Password = "123456",
+        //             Role = "Admin"
 
-                }, 
-                new User {
-                    Id = 2,
-                    Username = "User",
-                    Email = "Shormi@gmail.com",
-                    Password = "123456",
-                    Role = "User"
-                }
-            );
-        }
+        //         }, 
+        //         new User {
+        //             Id = 2,
+        //             Username = "User",
+        //             Email = "Shormi@gmail.com",
+        //             Password = "123456",
+        //             Role = "User"
+        //         }
+        //     );
+        // }
 
     }
 }
