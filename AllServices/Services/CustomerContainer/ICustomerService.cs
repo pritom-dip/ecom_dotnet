@@ -9,7 +9,7 @@ namespace AllServices.Services.CustomerContainer
 {
     public interface ICustomerService
     {
-        List<Customer> GetAllCustomers();
+        List<Customer> GetAllCustomers(QueryObject queryObject);
 
         Task<Customer?> GetCustomerById(int id);
 

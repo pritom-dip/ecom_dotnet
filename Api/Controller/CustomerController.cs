@@ -6,6 +6,7 @@ using AllServices.Services.CustomerContainer;
 using DataAccess.Dtos.CustomerDto;
 using DataAccess.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
 namespace Api.Controller
 {
@@ -22,9 +23,9 @@ namespace Api.Controller
         }
 
         [HttpGet]
-        public IActionResult GetCustomers()
+        public IActionResult GetCustomers([FromQuery] QueryObject queryObject)
         {
-            var results = _customerService.GetAllCustomers();
+            var results = _customerService.GetAllCustomers(queryObject);
             var customers = results.Select(customer => customer.ToCustomerDto());
             return Ok(customers);
         }

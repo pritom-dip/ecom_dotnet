@@ -28,7 +28,7 @@ namespace AllServices.Services.CategoryContainer
         public async Task<Category?> DeleteCategory(int id)
         {
             var category = await _categoryRepo.GetById(id);
-            if(category == null)
+            if (category == null)
             {
                 return null;
             }
@@ -37,9 +37,9 @@ namespace AllServices.Services.CategoryContainer
             return category;
         }
 
-        public List<Category> GetAllCategories()
+        public List<Category> GetAllCategories(QueryObject queryObject)
         {
-            var categories = _categoryRepo.Get().SortBy().Paginate(1,3).ToList();
+            var categories = _categoryRepo.Get().SortBy().Paginate(queryObject.PageNumber, queryObject.PerPage).ToList();
             return categories;
         }
 
@@ -52,7 +52,7 @@ namespace AllServices.Services.CategoryContainer
         {
             var existingCategory = await _categoryRepo.GetById(id);
 
-            if(existingCategory == null)
+            if (existingCategory == null)
             {
                 return null;
             }

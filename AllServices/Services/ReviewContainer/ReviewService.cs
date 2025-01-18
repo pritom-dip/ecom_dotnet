@@ -28,7 +28,7 @@ namespace AllServices.Services.ReviewContainer
         public async Task<Review?> DeleteReview(int id)
         {
             var review = await _reviewRepo.GetById(id);
-            if(review == null)
+            if (review == null)
             {
                 return null;
             }
@@ -36,9 +36,9 @@ namespace AllServices.Services.ReviewContainer
             return review;
         }
 
-        public List<Review> GetAllReviews()
+        public List<Review> GetAllReviews(QueryObject queryObject)
         {
-            var reviews = _reviewRepo.Get().Paginate(1,3).ToList();
+            var reviews = _reviewRepo.Get().Paginate(queryObject.PageNumber, queryObject.PerPage).ToList();
             return reviews;
         }
 
@@ -50,7 +50,7 @@ namespace AllServices.Services.ReviewContainer
         public async Task<Review?> UpdateReview(UpdateReviewDto updateReviewDto, int id)
         {
             var review = await _reviewRepo.GetById(id);
-            if(review == null)
+            if (review == null)
             {
                 return null;
             }

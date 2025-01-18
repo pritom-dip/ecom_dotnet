@@ -29,7 +29,7 @@ namespace AllServices.Services.ProductContainer
         public async Task<Product?> DeleteProduct(int id)
         {
             var product = await _productRepo.GetById(id);
-            if(product == null)
+            if (product == null)
             {
                 return null;
             }
@@ -37,9 +37,9 @@ namespace AllServices.Services.ProductContainer
             return product;
         }
 
-        public List<Product> GetAllProducts()
+        public List<Product> GetAllProducts(QueryObject queryObject)
         {
-            var products = _productRepo.Get().Include(p => p.Category).Include(p => p.Reviews).Paginate(1,3).ToList();
+            var products = _productRepo.Get().Include(p => p.Category).Include(p => p.Reviews).Paginate(queryObject.PageNumber, queryObject.PerPage).ToList();
             return products;
         }
 
@@ -51,7 +51,7 @@ namespace AllServices.Services.ProductContainer
         public async Task<Product?> UpdateProduct(UpdateProductDto updateProduct, int id)
         {
             var existingProduct = await _productRepo.GetById(id);
-            if(existingProduct == null)
+            if (existingProduct == null)
             {
                 return null;
             }

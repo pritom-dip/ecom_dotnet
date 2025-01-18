@@ -6,6 +6,7 @@ using AllServices.Services.CategoryContainer;
 using DataAccess.Dtos.CategoryDto;
 using DataAccess.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
 namespace Api.Controller
 {
@@ -21,30 +22,35 @@ namespace Api.Controller
         }
 
         [HttpGet]
-        public IActionResult GetAllCategories()
+        public IActionResult GetAllCategories([FromQuery] QueryObject queryObject)
         {
-            var results = _categoryService.GetAllCategories();
+            var results = _categoryService.GetAllCategories(queryObject);
             var categories = results.Select(c => c.ToCategoryDto());
             return Ok(categories);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetCategoryById(int id){
-            if(!ModelState.IsValid){
+        public async Task<IActionResult> GetCategoryById(int id)
+        {
+            if (!ModelState.IsValid)
+            {
                 return BadRequest();
             }
             var category = await _categoryService.GetCategoryById(id);
-            
-            if(category == null){
+
+            if (category == null)
+            {
                 return NotFound();
             }
             return Ok(category.ToCategoryDto());
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDto categoryDto){
-            if(!ModelState.IsValid){
+        public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDto categoryDto)
+        {
+            if (!ModelState.IsValid)
+            {
                 return BadRequest();
             }
 
@@ -53,13 +59,15 @@ namespace Api.Controller
             {
                 return BadRequest();
             }
-            return CreatedAtAction(nameof(GetCategoryById), new {id = newCategory.Id}, newCategory.ToCategoryDto());
+            return CreatedAtAction(nameof(GetCategoryById), new { id = newCategory.Id }, newCategory.ToCategoryDto());
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteCategory(int id){
-            if(!ModelState.IsValid){
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            if (!ModelState.IsValid)
+            {
                 return BadRequest();
             }
 
@@ -69,13 +77,16 @@ namespace Api.Controller
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryDto upcateCategoryDto, int id){
-            if(!ModelState.IsValid){
+        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryDto upcateCategoryDto, int id)
+        {
+            if (!ModelState.IsValid)
+            {
                 return BadRequest();
             }
 
             var updatedCategory = await _categoryService.UpdateCategory(upcateCategoryDto, id);
-            if(updatedCategory == null){
+            if (updatedCategory == null)
+            {
                 return NotFound();
             }
             return Ok(updatedCategory.ToCategoryDto());

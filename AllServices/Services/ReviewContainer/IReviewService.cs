@@ -9,7 +9,7 @@ namespace AllServices.Services.ReviewContainer
 {
     public interface IReviewService
     {
-        List<Review> GetAllReviews();
+        List<Review> GetAllReviews(QueryObject queryObject);
 
         Task<Review?> GetReviewById(int id);
 

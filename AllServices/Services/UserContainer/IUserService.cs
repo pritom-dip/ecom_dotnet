@@ -9,7 +9,7 @@ namespace AllServices.Services.UserContainer
 {
     public interface IUserService
     {
-        List<User> GetAllUsers();
+        List<User> GetAllUsers(QueryObject queryObject);
 
         Task<User?> GetUserById(int id);
 

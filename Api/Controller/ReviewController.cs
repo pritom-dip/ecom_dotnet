@@ -21,9 +21,9 @@ namespace Api.Controller
         }
 
         [HttpGet]
-        public IActionResult GetAllReviews()
+        public IActionResult GetAllReviews([FromQuery] QueryObject queryObject)
         {
-            var results = _reviewService.GetAllReviews();
+            var results = _reviewService.GetAllReviews(queryObject);
             var reviews = results.Select(r => r.ToReviewDto());
             return Ok(reviews);
         }
@@ -33,12 +33,12 @@ namespace Api.Controller
 
         public async Task<IActionResult> GetReviewById(int id)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
             var review = await _reviewService.GetReviewById(id);
-            if(review == null)
+            if (review == null)
             {
                 return NotFound();
             }
@@ -48,23 +48,23 @@ namespace Api.Controller
         [HttpPost]
         public async Task<IActionResult> CreateReview([FromBody] CreateReviewDto createReviewDto)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
             var review = await _reviewService.CreateReview(createReviewDto);
-            return CreatedAtAction(nameof(GetReviewById), new {id = review.Id}, review.ToReviewDto());
+            return CreatedAtAction(nameof(GetReviewById), new { id = review.Id }, review.ToReviewDto());
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteReview(int id)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
             var review = await _reviewService.DeleteReview(id);
-            if(review == null)
+            if (review == null)
             {
                 return NotFound();
             }
@@ -76,17 +76,17 @@ namespace Api.Controller
 
         public async Task<IActionResult> Update([FromBody] UpdateReviewDto updateReviewDto, int id)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
             var review = await _reviewService.UpdateReview(updateReviewDto, id);
-            if(review == null)
+            if (review == null)
             {
                 return NotFound();
             }
             return Ok(review.ToReviewDto());
         }
-        
+
     }
 }

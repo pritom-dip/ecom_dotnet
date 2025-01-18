@@ -28,16 +28,17 @@ namespace AllServices.Services.UserContainer
         public async Task<User?> DeleteUser(int id)
         {
             var user = await _userService.GetById(id);
-            if(user == null){
+            if (user == null)
+            {
                 return null;
             }
             await _userService.Delete(user);
             return user;
         }
 
-        public  List<User> GetAllUsers()
+        public List<User> GetAllUsers(QueryObject queryObject)
         {
-            List<User> allUsers = _userService.Get().SortBy().Paginate(1, 2).ToList();
+            List<User> allUsers = _userService.Get().SortBy().Paginate(queryObject.PageNumber, queryObject.PerPage).ToList();
             return allUsers;
         }
 
@@ -50,7 +51,8 @@ namespace AllServices.Services.UserContainer
         public async Task<User?> UpdateUser(UpdateUserDto updateUserDto, int id)
         {
             var existingUser = await _userService.GetById(id);
-            if(existingUser == null){
+            if (existingUser == null)
+            {
                 return null;
             }
 

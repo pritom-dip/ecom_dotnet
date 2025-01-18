@@ -13,17 +13,18 @@ namespace Api.Controller
     [ApiController]
     [Route("/api/user")]
     public class UserController : ControllerBase
-    {   
+    {
 
         private readonly IUserService _userService;
         public UserController(IUserService userService)
         {
             _userService = userService;
         }
-        
+
         [HttpGet]
-        public IActionResult GetUsers(){
-            var users =  _userService.GetAllUsers();
+        public IActionResult GetUsers([FromQuery] QueryObject queryObject)
+        {
+            var users = _userService.GetAllUsers(queryObject);
             var userDtos = users.Select(x => x.ToGetUserDto());
             return Ok(userDtos);
         }
@@ -31,13 +32,16 @@ namespace Api.Controller
         [HttpGet]
         [Route("{id}")]
 
-        public async Task<IActionResult> GetUserById(int id){
-            if(!ModelState.IsValid){
+        public async Task<IActionResult> GetUserById(int id)
+        {
+            if (!ModelState.IsValid)
+            {
                 return BadRequest();
             }
 
             var user = await _userService.GetUserById(id);
-            if(user == null){
+            if (user == null)
+            {
                 return NotFound();
             }
 
@@ -45,26 +49,31 @@ namespace Api.Controller
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateUserDto userDto) {
+        public async Task<IActionResult> Post([FromBody] CreateUserDto userDto)
+        {
 
-            if(!ModelState.IsValid){
+            if (!ModelState.IsValid)
+            {
                 return BadRequest();
             }
 
             var newUser = await _userService.CreateUser(userDto);
 
-            if(newUser == null){
+            if (newUser == null)
+            {
                 return BadRequest();
             }
 
-            return CreatedAtAction(nameof(GetUserById), new {id= newUser.Id}, newUser.ToGetUserDto());
+            return CreatedAtAction(nameof(GetUserById), new { id = newUser.Id }, newUser.ToGetUserDto());
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteUser(int id){
+        public async Task<IActionResult> DeleteUser(int id)
+        {
             var user = await _userService.DeleteUser(id);
-            if(user == null){
+            if (user == null)
+            {
                 return NotFound();
             }
             return Ok(null);
@@ -72,19 +81,22 @@ namespace Api.Controller
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UpdateUserDto userDto){
-            if(!ModelState.IsValid){
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] UpdateUserDto userDto)
+        {
+            if (!ModelState.IsValid)
+            {
                 return BadRequest();
             }
 
             var updatedUser = await _userService.UpdateUser(userDto, id);
 
-            if(updatedUser == null){
+            if (updatedUser == null)
+            {
                 return NotFound();
             }
 
             return Ok(updatedUser.ToGetUserDto());
         }
-        
+
     }
 }

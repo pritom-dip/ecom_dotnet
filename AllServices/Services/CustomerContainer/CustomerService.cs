@@ -37,9 +37,9 @@ namespace AllServices.Services.CustomerContainer
             return customer;
         }
 
-        public List<Customer> GetAllCustomers()
+        public List<Customer> GetAllCustomers(QueryObject queryObject)
         {
-            var customers = _customerRepo.Get().Paginate(1, 2).ToList();
+            var customers = _customerRepo.Get().Paginate(queryObject.PageNumber, queryObject.PerPage).ToList();
             return customers;
         }
 

@@ -9,7 +9,7 @@ namespace AllServices.Services.CategoryContainer
 {
     public interface ICategoryService
     {
-        List<Category> GetAllCategories();
+        List<Category> GetAllCategories(QueryObject queryObject);
         Task<Category?> GetCategoryById(int id);
 
         Task<Category?> CreateCategory(CreateCategoryDto categoryDto);

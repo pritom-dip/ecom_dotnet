@@ -10,7 +10,7 @@ namespace AllServices.Services.ProductContainer
 {
     public interface IProductService
     {
-        List<Product> GetAllProducts();
+        List<Product> GetAllProducts(QueryObject queryObject);
 
         Task<Product?> GetProductById(int id);
 
