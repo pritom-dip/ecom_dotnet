@@ -1,6 +1,7 @@
 using AllServices.Seeder;
 using AllServices.Services.CategoryContainer;
 using AllServices.Services.CustomerContainer;
+using AllServices.Services.OrderContainer;
 using AllServices.Services.ProductContainer;
 using AllServices.Services.ReviewContainer;
 using AllServices.Services.UserContainer;
@@ -42,6 +43,10 @@ builder.Services.AddScoped<IProductService, ProductService>();
 // Review
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
+
+// Order & OrderItems
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 // Build the container
 var app = builder.Build();
