@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAccess.Dtos.PaymentDto;
 using Models;
 
 namespace DataAccess.Dtos.OrderDto
@@ -22,7 +23,7 @@ namespace DataAccess.Dtos.OrderDto
 
         public Customer? Customer { get; set; }
         public List<OrderItemDto.OrderItemDto> OrderItems { get; set; } = new List<OrderItemDto.OrderItemDto>();
-        public Payment Payment { get; set; }
+        public PaymentDto.PaymentDto Payment { get; set; }
         public Shipping Shipping { get; set; }
     }
 }

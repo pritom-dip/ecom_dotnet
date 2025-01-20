@@ -17,7 +17,7 @@ namespace AllServices.Services.PaymentContainer
         }
         public async Task<Payment?> CreatePayment(CreatePaymentDto createPaymentDto)
         {
-            var payment = createPaymentDto.ToCreatePayment();
+            var payment = createPaymentDto.ToCreatePaymentDto();
             var order = await _paymentRepo.GetOrder(payment.OrderId);
 
             if (order == null)

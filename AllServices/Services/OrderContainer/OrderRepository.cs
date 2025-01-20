@@ -39,7 +39,7 @@ namespace AllServices.Services.OrderContainer
 
         public async Task<Order?> Get(int id)
         {
-            return await _context.Orders.FindAsync(id);
+            return await _context.Orders.Include(o => o.OrderItems).Include(or => or.Payment).FirstOrDefaultAsync(o => o.Id == id);
         }
 
         public async Task<List<ProductPriceAndQuantity>> GetProductPrice(List<int> ids)

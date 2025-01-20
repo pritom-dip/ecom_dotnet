@@ -9,7 +9,7 @@ namespace DataAccess.Mappers
 {
     public static class PaymentMappers
     {
-        public static Payment ToCreatePayment(this CreatePaymentDto createPaymentDto)
+        public static Payment ToCreatePaymentDto(this CreatePaymentDto createPaymentDto)
         {
             return new Payment
             {
@@ -21,7 +21,7 @@ namespace DataAccess.Mappers
             };
         }
 
-        public static PaymentDto ToCreatePaymentDto(this Payment payment)
+        public static PaymentDto ToPaymentDto(this Payment payment)
         {
             return new PaymentDto
             {
@@ -33,7 +33,6 @@ namespace DataAccess.Mappers
                 PaymentDate = payment.PaymentDate,
                 CreateAt = payment.CreateAt,
                 UpdatedAt = payment.UpdatedAt,
-                Order = payment.Order.ToOrderDto()
             };
         }
     }

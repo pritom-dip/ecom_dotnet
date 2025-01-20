@@ -67,8 +67,17 @@ namespace AllServices.Services.OrderContainer
 
         public async Task<Order?> GetOrder(int id)
         {
-            var order = await _orderRepo.Get(id);
-            return order;
+            try
+            {
+                var order = await _orderRepo.Get(id);
+                return order;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
         }
     }
 }
