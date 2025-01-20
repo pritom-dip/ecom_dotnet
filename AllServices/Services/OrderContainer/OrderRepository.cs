@@ -39,7 +39,7 @@ namespace AllServices.Services.OrderContainer
 
         public async Task<Order?> Get(int id)
         {
-            return await _context.Orders.Include(o => o.OrderItems).Include(or => or.Payment).FirstOrDefaultAsync(o => o.Id == id);
+            return await _context.Orders.Include(o => o.OrderItems).Include(or => or.Payment).Include(o => o.Shipping).FirstOrDefaultAsync(o => o.Id == id);
         }
 
         public async Task<List<ProductPriceAndQuantity>> GetProductPrice(List<int> ids)
@@ -52,6 +52,13 @@ namespace AllServices.Services.OrderContainer
                                             Stock = p.StockQty
                                         }).ToListAsync();
             return products;
+        }
+
+        public async Task<Shipping> CreateShipping(Shipping shipping)
+        {
+            await _context.Shippings.AddAsync(shipping);
+            await _context.SaveChangesAsync();
+            return shipping;
         }
     }
 }

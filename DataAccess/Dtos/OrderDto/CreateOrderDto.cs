@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Dtos.OrderItemDto;
+using DataAccess.Dtos.ShippingDto;
+using Models;
 
 namespace DataAccess.Dtos.OrderDto
 {
@@ -16,5 +18,6 @@ namespace DataAccess.Dtos.OrderDto
         public required decimal Total { get; set; }
         public string? ShippingAddress { get; set; }
         public required List<CreateOrderItemDto> OrderItems { get; set; }
+        public required CreateShippingDto Shipping { get; set; }
     }
 }

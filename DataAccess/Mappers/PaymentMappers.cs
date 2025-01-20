@@ -26,7 +26,6 @@ namespace DataAccess.Mappers
             return new PaymentDto
             {
                 Id = payment.Id,
-                OrderId = payment.OrderId,
                 PaymentMethod = payment.PaymentMethod,
                 PaymentStatus = payment.PaymentStatus,
                 Amount = payment.Amount,

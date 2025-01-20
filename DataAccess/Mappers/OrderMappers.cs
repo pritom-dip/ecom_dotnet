@@ -14,6 +14,7 @@ namespace DataAccess.Mappers
         {
             return new OrderDto
             {
+                Id = order.Id,
                 CustomerId = order.CustomerId,
                 OrderDate = order.OrderDate,
                 Total = order.Total,
@@ -24,7 +25,8 @@ namespace DataAccess.Mappers
                 UpdatedAt = order.UpdatedAt,
                 Customer = order.Customer,
                 OrderItems = order.OrderItems.Select(oi => oi.ToOrderItemDto()).ToList(),
-                Payment = order.Payment.ToPaymentDto(),
+                Shipping = order.Shipping != null ? order.Shipping.ToShippingDto() : null,
+                Payment = order.Payment != null ? order.Payment.ToPaymentDto() : null,
             };
         }
 

@@ -17,5 +17,7 @@ namespace AllServices.Services.OrderContainer
 
         Task<List<ProductPriceAndQuantity>> GetProductPrice(List<int> ids);
 
+        Task<Shipping> CreateShipping(Shipping shipping);
+
     }
 }

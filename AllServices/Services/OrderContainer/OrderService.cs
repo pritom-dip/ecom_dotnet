@@ -20,7 +20,6 @@ namespace AllServices.Services.OrderContainer
         public async Task<Order> CreateOrder(CreateOrderDto createOrderDto)
         {
             var orderItems = createOrderDto.OrderItems;
-
             // Calculate total
             decimal total = orderItems.Sum(x => x.Quantity * x.Price);
 
@@ -58,10 +57,17 @@ namespace AllServices.Services.OrderContainer
                 throw new Exception("No cheating");
             }
 
+
+
             var order = createOrderDto.ToCreateOrder();
             var createdOrder = await _orderRepo.Create(order);
+
+            var shipping = createOrderDto.Shipping;
+            var shippingDto = createOrderDto.ToCreateShippingDto(createdOrder.Id);
+
             var createOrderItems = createOrderDto.ToCreateOrderItem(createdOrder.Id);
             await _orderRepo.CreateOrderItem(createOrderItems);
+            await _orderRepo.CreateShipping(shippingDto);
             return createdOrder;
         }
 

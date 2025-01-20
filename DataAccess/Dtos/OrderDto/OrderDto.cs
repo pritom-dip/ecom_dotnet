@@ -4,12 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Dtos.PaymentDto;
+using DataAccess.Dtos.ShippingDto;
 using Models;
 
 namespace DataAccess.Dtos.OrderDto
 {
     public class OrderDto
     {
+        public int Id { get; set; }
         [Required]
         public required int CustomerId { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
@@ -23,7 +25,7 @@ namespace DataAccess.Dtos.OrderDto
 
         public Customer? Customer { get; set; }
         public List<OrderItemDto.OrderItemDto> OrderItems { get; set; } = new List<OrderItemDto.OrderItemDto>();
-        public PaymentDto.PaymentDto Payment { get; set; }
-        public Shipping Shipping { get; set; }
+        public PaymentDto.PaymentDto? Payment { get; set; }
+        public ShippingDto.ShippingDto? Shipping { get; set; }
     }
 }
