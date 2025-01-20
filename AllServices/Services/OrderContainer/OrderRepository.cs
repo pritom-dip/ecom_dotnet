@@ -12,6 +12,7 @@ namespace AllServices.Services.OrderContainer
     {
         public int ProductId { get; set; }
         public decimal Price { get; set; }
+        public int Stock { get; set; }
     }
     public class OrderRepository : IOrderRepository
     {
@@ -47,7 +48,8 @@ namespace AllServices.Services.OrderContainer
                                         .Select(p => new ProductPriceAndQuantity
                                         {
                                             ProductId = p.Id,
-                                            Price = p.Price
+                                            Price = p.Price,
+                                            Stock = p.StockQty
                                         }).ToListAsync();
             return products;
         }

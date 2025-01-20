@@ -38,11 +38,16 @@ namespace AllServices.Services.OrderContainer
                 var productPrice = productPrices.FirstOrDefault(x => x.ProductId == orderItem.ProductId);
                 if (productPrice == null)
                 {
-                    throw new Exception("Product not found");
+                    throw new Exception($"{orderItem.ProductId} not found");
                 }
                 if (productPrice.Price != orderItem.Price)
                 {
-                    throw new Exception("Price is not correct");
+                    throw new Exception($"Price of this product id ({orderItem.ProductId}) is incorrect");
+                }
+
+                if (productPrice.Stock < orderItem.Quantity)
+                {
+                    throw new Exception($"Stock of this product id ({orderItem.ProductId}) is not enough");
                 }
             }
 
