@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace AllServices.Services.OrderContainer
 {
+    public class ProductPriceAndQuantity
+    {
+        public int ProductId { get; set; }
+        public decimal Price { get; set; }
+    }
     public class OrderRepository : IOrderRepository
     {
 
@@ -33,6 +39,17 @@ namespace AllServices.Services.OrderContainer
         public async Task<Order?> Get(int id)
         {
             return await _context.Orders.FindAsync(id);
+        }
+
+        public async Task<List<ProductPriceAndQuantity>> GetProductPrice(List<int> ids)
+        {
+            var products = await _context.Products.Where(p => ids.Contains(p.Id))
+                                        .Select(p => new ProductPriceAndQuantity
+                                        {
+                                            ProductId = p.Id,
+                                            Price = p.Price
+                                        }).ToListAsync();
+            return products;
         }
     }
 }

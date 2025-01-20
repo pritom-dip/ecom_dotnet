@@ -15,5 +15,7 @@ namespace AllServices.Services.OrderContainer
 
         Task<Order?> Get(int id);
 
+        Task<List<ProductPriceAndQuantity>> GetProductPrice(List<int> ids);
+
     }
 }
